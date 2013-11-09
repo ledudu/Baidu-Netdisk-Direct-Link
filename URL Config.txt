@@ -1,0 +1,2 @@
+url	/(.*)/(.*)/(.*) index.php?uk=$1&shareid=$2
+url	/(.*)/(.*)	index.php?file=$1
