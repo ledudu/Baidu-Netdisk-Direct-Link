@@ -1,10 +1,9 @@
 <?php
-//获取参数
 $file = $_GET['file'];
 $uk = $_GET['uk'];
 $shareid = $_GET['shareid'];
 $jsonpcallback = $_GET['jsonpcallback'];
-//生成 URL 地址
+//get url
 if ($file != '') {
 	$url = 'http://pan.baidu.com/s/' . $file;
 } elseif ($shareid != '' && $uk != '') {
@@ -13,15 +12,25 @@ if ($file != '') {
 	echo 'Parameter Error';
 	return false;
 }
-//读取内容
+//get html content
 $src = file_get_contents($url);
-//匹配文件名
+//get filename
 $pattern = '/server_filename="(.+?)"/is';
 preg_match_all($pattern, $src, $result);
 $filename = $result[1][0];
-//输出 JSON
+//get uk
+$pattern = '/FileUtils.share_uk="(.+?)"/is';
+preg_match_all($pattern, $src, $result);
+$uk = $result[1][0];
+//get shareid
+$pattern = '/FileUtils.share_id="(.+?)"/is';
+preg_match_all($pattern, $src, $result);
+$shareid = $result[1][0];
+//output json
 $info = array(
 	'filename' => $filename,
+	'uk' => $uk,
+	'shareid' => $shareid,
 );
 echo $jsonpcallback, '(', json_encode($info), ')';
 ?>
