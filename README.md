@@ -14,7 +14,7 @@ http://pan.baidu.com/share/link?shareid=498673&uk=3145124 对应为 index.php?share
 
 info.php 使用说明
 -----------------------------------
-获取文件的信息，目前支持文件名，返回 Json 数组
+获取文件的信息，目前支持文件名、uk、shareid，返回 JSON 数组
 
 ### 新版地址
 http://pan.baidu.com/s/1n81ky 对应为 info.php?file=1n81ky
